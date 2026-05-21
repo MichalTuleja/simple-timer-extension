@@ -25,12 +25,9 @@ export default class TimerExtension extends Extension {
       this.panelButton.add_style_class_name('simple-timer-panel-button');
       
       // MAIN PANEL
-      this.icon = new St.Icon({ icon_name: 'alarm-symbolic', style_class: 'system-status-icon' });
       this.timerLabel = new St.Label({ text: '0:00', y_expand: true, y_align: Clutter.ActorAlign.CENTER });
-      this.timerLabel.hide();      
       
       this.panelButtonLayout = new St.BoxLayout();
-      this.panelButtonLayout.add_child(this.icon);
       this.panelButtonLayout.add_child(this.timerLabel);
             
       
@@ -126,13 +123,13 @@ export default class TimerExtension extends Extension {
          this.timer.reset();
          this.updateTimerLabelStyle();
          this.updateTimerLabel();
-         this.timerLabel.hide();
-         this.icon.show();
          this.updateMenuButtonVisibilty();
       });
       boxLayout.add_child(this.menuButtonStop);      
       
-      this.panelButton.add_child(this.panelButtonLayout);      
+      this.panelButton.add_child(this.panelButtonLayout);
+      this.updateTimerLabel();
+      this.updateTimerLabelStyle();
       
       // Create a separator
       this.panelButton.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
@@ -232,9 +229,6 @@ export default class TimerExtension extends Extension {
       if (this.timer.isRunning()) {
          this.updateTimerLabel();
          this.updateTimerLabelStyle(false);
-         this.timerLabel.show();
-         this.icon.hide();
-         this.menuButtonStop.show();
          this.updateMenuButtonVisibilty();
       }      
    }
@@ -251,7 +245,7 @@ export default class TimerExtension extends Extension {
 
          if (this.timer.isFinished()) {
             style = 'countdown-alert';
-         } else if (this.timer.isPaused()) {
+         } else if (this.timer.isPaused() || this.timer.isStopped()) {
             style = 'countdown-paused';
          } else {
             style = 'countdown';

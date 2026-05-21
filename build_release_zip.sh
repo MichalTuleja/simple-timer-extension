@@ -2,7 +2,7 @@
 
 shopt -s nullglob
 
-FILENAME_ZIP="simple-timer@majortomvr.github.com.zip"
+FILENAME_ZIP="simple-timer@MichalTuleja.github.com.zip"
 FILES=(
    LICENSE
    metadata.json
