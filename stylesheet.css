@@ -15,15 +15,15 @@
 }
 
 .simple-timer-panel-button {
-    padding: 14px;
-    margin: 6px;
-    -natural-hpadding: 2px;
-    -minimum-hpadding: 2px;
+    padding: 16px;
+    margin: 2px 2px;
+    -natural-hpadding: 24px;
+    -minimum-hpadding: 24px;
 }
 
 .simple-timer-panel-button:hover {
-    padding: 6px 10px;
-    border-radius: 6px;
+    padding: 8px 12px;
+    border-radius: 28px;
 }
 
 .control-button {
